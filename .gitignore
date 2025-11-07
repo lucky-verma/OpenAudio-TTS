@@ -16,8 +16,8 @@ env/
 ENV/
 .venv/
 openaudio_venv/
-openaudio-s1-mini/venv/
-openaudio-s1-mini/venv_linux/
+**/venv/
+**/venv_linux/
 
 # Model Checkpoints (Large files - should not be committed)
 checkpoints/
