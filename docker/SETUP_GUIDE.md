@@ -293,7 +293,7 @@ class FishSpeechTTS:
         reference_id: str = None,
         format: str = "wav",
         normalize: bool = True,
-        temperature: float = 0.7,
+        temperature: float = 0.8,
         output_path: str = None
     ) -> bytes:
         """
@@ -304,7 +304,7 @@ class FishSpeechTTS:
             reference_id: Reference voice ID for cloning (optional)
             format: Output format (wav, mp3, flac)
             normalize: Enable text normalization for numbers/dates
-            temperature: Creativity (0.1-1.0, default 0.7)
+            temperature: Creativity (0.1-1.0, default 0.8)
             output_path: Save audio to file (optional)
             
         Returns:
@@ -464,7 +464,7 @@ nvidia-smi
 | `format` | `wav` | Output format: `wav`, `mp3`, `flac` |
 | `normalize` | `true` | Text normalization for numbers/dates |
 | `chunk_length` | `200` | Text chunk size for processing |
-| `temperature` | `0.7` | Creativity: 0.1 (conservative) to 1.0 (creative) |
+| `temperature` | `0.8` | Creativity: 0.1 (conservative) to 1.0 (creative) |
 | `top_p` | `0.8` | Sampling diversity |
 | `repetition_penalty` | `1.1` | Prevent repetition (1.0-2.0) |
 | `max_new_tokens` | `1024` | Maximum output length |
