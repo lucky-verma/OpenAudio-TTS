@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  # OpenAudio S1 Mini - Recommended (Port 8080)
+  openaudio-s1-mini:
+    image: fishaudio/fish-speech:server-cuda
+    container_name: openaudio-s1-mini
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount checkpoints - update path to your checkpoint location
+      - ~/fish-speech-models/checkpoints:/app/checkpoints
+      # Optional: mount references for pre-loaded voices
+      - ./references:/app/references
+    environment:
+      - COMPILE=1
+      - LLAMA_CHECKPOINT_PATH=checkpoints/openaudio-s1-mini
+      - DECODER_CHECKPOINT_PATH=checkpoints/openaudio-s1-mini/codec.pth
+      - DECODER_CONFIG_NAME=modded_dac_vq
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - fish-speech-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 3
+    restart: unless-stopped
+
+  # Fish Speech 1.5 - Legacy/Comparison (Port 8081)
+  fish-speech-1-5:
+    image: fishaudio/fish-speech:server-cuda
+    container_name: fish-speech-1-5
+    ports:
+      - "8081:8080"
+    volumes:
+      # Same checkpoints mount
+      - ~/fish-speech-models/checkpoints:/app/checkpoints
+      - ./references:/app/references
+    environment:
+      - COMPILE=1
+      - LLAMA_CHECKPOINT_PATH=checkpoints/fish-speech-1.5
+      - DECODER_CHECKPOINT_PATH=checkpoints/fish-speech-1.5/firefly-gan-vq-fsq-8x1024-21hz-generator.pth
+      - DECODER_CONFIG_NAME=firefly_gan_vq
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - fish-speech-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 3
+    restart: unless-stopped
+
+networks:
+  fish-speech-network:
+    driver: bridge

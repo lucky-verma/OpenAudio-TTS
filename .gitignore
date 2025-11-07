@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environments
+venv/
+venv_linux/
+env/
+ENV/
+.venv/
+openaudio_venv/
+openaudio-s1-mini/venv/
+openaudio-s1-mini/venv_linux/
+
+# Model Checkpoints (Large files - should not be committed)
+checkpoints/
+openaudio_checkpoints/
+fish-speech-models/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.h5
+*.pb
+
+# Audio Files (Large files)
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.ogg
+*.aac
+samples/
+outputs/
+openaudio_outputs/
+openaudio_test_outputs/
+Recording.m4a
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Environment variables
+.env
+.env.local
+
+# Docker
+.dockerignore
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Memory bank (optional - can be committed if needed)
+# memory-bank/
+

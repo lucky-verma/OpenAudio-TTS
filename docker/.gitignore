@@ -1,0 +1,11 @@
+# Test outputs
+*.wav
+*.mp3
+*.flac
+
+# References directory
+references/
+
+# Logs
+*.log
+
